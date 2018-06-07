@@ -1,0 +1,884 @@
+Angular JS 4
+=============
+
+https://cloud.cdp.rpsconsulting.in/console/#/
+
+angularjs-user1
+rps@12345
+
+
+windows user: rps
+password: rps@123
+
+> npm install -g @angular/cli@1.7.4 : command line tool versing is 1.7.4
+
+> ng : to make sure it's installed
+
+No mager diff 2/4/6
+
+CSS, HTML & Javascript - basic prereq
+
+Anglar 1.x -- Angular JS 
+
+Angular 2+ -- Angular : any after 2 (comp new fram from An 1.x)
+
+Angular 5 -- used in this training
+
+Termonaligies
+-------------
+
+ES5/ES6 - JS standard propsed by w3c - latest std is HTML5/ CSS3 
+	-ES means ECMA (European computer manufacturers association)
+	- in 2015 release ES6/es2015
+	- es2015 most browse used now
+	
+	Web App 
+1. Server Script 2. Client Script
+
+ES6 may not be the supp by bowser - have to make my vers work in his brwser
+
+From 2015: What you develop is not what you deploy in the production server..?
+
+In Develpment -> (Advance stripting languages with high modularity & maintainance capability)
+
+Production -> Lower version of the script will be deployed in the production server.
+	- In process called (Transpilation -- Coversion of one version of script to other (most cases relatively lower version)
+
+angular - typescript : is the scrit languages 
+	- Typescript compiler is used for transpile
+
+Producton server - es5
+
+React JS -- JSX 
+	Transpiler used is babel
+	Production server - es5
+
+SPA - Sing Page Application
+	- New all want SPA
+	- Complex/Large JS in a SPA
+	x.js (has 1000 lines)
+	y.js want use test() in x.js
+	<script import="x.js">
+	<script import="y.js"> : but i need only test() method from x.js
+	
+Because of poor modularity in JS, the amount of data (in the form of code) to the brower in huge...
+
+Source Script -> Liberies (1000 of lines) -> CSS file -> SASS/LESS
+
+Need a tool which understand how to transpile by specifing soruce & target)
+	- walk thour liberay, css and goup only the code used
+	- remove all the code not used
+	- css can be convered to js
+	- called as bundled js
+	- Every change is done in sours and rebundle again.
+	- Toold whic dose this is Webpack 
+Platefor which does this is NodeJS
+Scaffolding - process of creating folder structure, downloading, necessary libraries, necessary bundling tools, transpiling tools, testing tools, minifying tools & linting tools
+Automated now -- Angular-cli to scaffold your angular application
+
+npm install -g @angular/cli - will download the latest version 
+	- will generate app for Angular 6
+	
+npm install -g @angular/cli@1.7.4
+	- will generate app for Angular 5
+	
+Noder JS
+--------
+Before to develope need browser, text editor (html, css, JS)..
+
+When development get compligated.. 
+	- need Node JS
+	- Is a platform
+	- Procide ecosystem or inter-related evn
+	- like unit testing, client code develpemnt, server side JS, minfiying tools, building tools, traspilers, compilers, libraries..
+	- like Maven in java
+	- it provide entire environment
+	- JS with RDBMS
+	- JS with NOSQL
+All these are possible because of Node JS and its libraries.
+
+1. Node JS installation installs a commedn line tool called node using whic we can JS scritp
+2. Node JS installation installs a commen line tool called npm (node package manager) which is used to create a node applciation, run unit test cases, run scripts, dowload libraries from node ecosystem.
+
+> node first.js
+
+A Node application is also called a node package. Angular app is also a node package.
+
+To create a node package:
+1. Install Visual Studion Code
+2. Create a folder.
+3. > npm init 
+4. Open VSC File -> Open folder -> select the folder created
+5. package.json is default or system file.
+
+npm install --save angular@1.6
+	downlaod moduled under node_modules
+	package.json will have dependency details "angular" : "^1.6.1"
+	>npm install : will again download if modules are deleted
+
+npm install --save-deve jasmine : only for developemnt will not be include in prod version.
+	"devDependencies": { jasmn : ^3.1.0 } : in package.json
+
+Create a "index.ts" or tipe script
+	Every featue in ES6 is downgradable to ES5
+	
+student.js
+----------
+
+function Student(sno, name) {
+this.sno = sno;
+this.name=name; }
+
+Student.prototype.display = fuction() {
+console.log(this.sno+" "+this.name);
+}
+
+var obj = new Student(12, "Raj");
+var obj1=new Studnet("Navee", 12);
+
+obj.display();
+obj1.display();
+
+-- This is an old way of witing without "Class"
+-- And JS doesn't check for type.. will take any arg.. or no type checking..
+
+es6.js - writen using class
+------
+class Student {
+	constructor(sno, name) {
+		this.sno = sno;
+		this.name = name;
+	}
+	display() {
+		console.log(this.sno + " " + this.name);
+	}
+}
+var obj = new Student(1, "Ram");
+var obj1 = new Student(2, "Jon");
+obj.display();
+obj1.display();
+
+Strict Type Checking:
+--------------------
+	Angular use it
+	Complable 
+	Compiled to JS
+	Develope by MS called Type Script
+
+>npm intall -g typescript
+	g install globally
+	--save for local scope
+	
+>tsc : is intalled 
+
+Employe.ts (Strict Type Check)
+----------
+class Emp {
+	sno: Number;
+	name:String;
+	
+	constructor (sno:number, name:string) {
+		this.sno = sno;
+		this.name = name;
+	}
+		
+	display():void {
+		console.log(this.son + " " + this.name);
+	}
+}
+var obj = new Emp(12, "Ben");
+obj.display();
+
+>tsc Employe.ts (generates Employe.js)
+>node Employe.js
+
+Data type supported Number, String, Boolean, Object
+
+tsc Employ.tx --target es2015 : generate ES6 formate by default it's ES5
+
+Angular 4
+--------
+
+Component based framework.
+Best suitable for complex SPA.
+No Architecture.
+
+Base is Component
+
+Page has -> JS, html, css
+
+According to angular a single page is a collection of UI units (Component)
+or
+A single page app (spa) is collection of component.
+
+Componet have:
+--------------
+1. Template (layout) - mangede by HTML
+2. Look & feel - CSS
+3. Data (Mode) - Javascript (Objects)
+4. Events (listened) - Javascript (functions)
+
+Data + functionalites -> Encapsulations called Class
+
+So if create Class it's a Component.
+
+React JS - in a js file we can add HTML directly - JSX
+
+@Component( // called decorator
+	template: "form.htl"
+	style:"form.css"
+)
+class Form {
+	name:string;
+	city:string;
+	
+	handleClick() {
+		// code
+	}
+}
+
+- Soluetion to merge html, css & js.
+
+Learing Angular is about:
+-------------------------
+1. How to relate compnent with one anther
+2. How to establish communication b/w components..
+
+npm install -g @angular/cli@1.7.4 : will install a command "ng"
+
+c:/>cd applications
+c:/applications>ng new firstapp : created one angular module
+
+-- take a bakup of firstapp folder created; can be used for next/new proj..
+
+File Generated:
+
+1. angular-cli.json
+	file contains configuration details for angular-cli.. it contains source code folder details, css library details, 
+	entry poing of y'r app..
+	for bundling
+2.package.json
+	configuration file for your angular apps
+3. node_modules (folder)
+	dependencies will be downloade & saved here.
+	
+tsconfig.json
+	has target (es5)
+	it contains config details for typescript compiler
+
+tslint.json
+	it contains configuration (rules) for linting the typescript code
+	
+For an angular application we use a library called Jasmine to wirte unit test cases
+
+a task runner caller karma is used to run and report these test cases
+the configuration for karma framework will be usually in 
+karma.conf.js
+
+To write end to end test cases (while the application is running live), also we jasmin library
+
+To run and examine them we use a library protractor
+
+end to end test cases code will be written in the folder e2e.
+
+src/app - where developer works
+
+Angular app is also called an angular Module
+	Every angular appp has one module
+
+A module is a collection of copmonts, services, pipes and directives
+
+Details of module will be available in a file called app.module.ts
+
+Typically in a angular module we build a hierarchy of components in a parent child fashon..
+
+The best practice is information flow must be unidirectional.. one way..
+
+An Angular module can have one or more root components.. but typically it's preferrable to have one root component..
+
+*.spect - contains unit test cases
+
+>ng build : onse ready can run this comd.. final process.. no need run now & then.. 
+	create "dist" folder
+	
+>ng serve : deply in a temp server localhost:4200
+
+Edit app.components.ts's "title"; bundel & serve
+
+firstapp> ng generate component child : generates a cheild
+
+Edit child.component.html 
+
+Angular Directives
+------------------
+
+Directives may be elements, attributes in a html template.
+
+<app-root></app-root>
+<h1 ngClass="test"></h1>
+
+Angular has three kinds of Directives:
+1. Component directives 
+	Every component is a component directives
+2. Structural directives
+	Usually handles layout and template
+	They usuall generate template
+	Or they hide a template or make a template visible
+	all structural directives must be prefixed with *(asterisk)
+	Ex: ngFor, ngIf, ngSwitch
+	See child.component.html
+	<li *ngFor="let x of things">{{x}}</li>
+3. Attribute directives
+	Changes the behaviour of the target element.
+	Ex: size,
+	Againg classified in 3 typs
+	a. Input directives
+		Receives Values & change the behaviour of targe element.
+		All Input direcives mus be enclosed within []
+		ex: ngClass, ngStyle
+		[ngClass]="style"
+	b. Output directives
+		Invokes or calls functions based on event or behavour changes
+		All output directives must be enclosed within ()
+		Ex: click, change, mouseover, keydown, keyup
+		(click)="changeColor()"
+	c. Input-output directives
+		Receive value from a variable as well as store value into a variable
+		Enclosed within [()]
+		Ex: ngModel
+		<input type="text" [(ngModel)]="childtitle">
+
+Day 2:
+======
+
+Recap:
+-----
+
+What Component
+Parent cheild relationship
+Directives
+
+Flow of info from Parent to Child; poss is there to sending info from Child to Panent but avoid it..
+
+> ng serve -o : -o for opening in the browser
+
+What is the data needed by the child, parent should be aware..
+
+Added file app.components.ts (parent) with string[][] array..
+
+* For a cheild comp to receive info from parent it should be decorated with "Input"
+In child.component.ts add
+import {Component, OnInit, Input} from '@angular/core';
+
+Child broad casing some info to Parent: (it's not passing it's broad castin)
+
+Update child.component.thml 
+Add an itme <input...
+<button> Add item <button>
+Java:
+List<String> l = new ArrayList<>();
+
+Concept availabe in Tpe script alos..
+
+Import "EventEmitter" in child.comp.ts
+@Output("send') emitter:EventEmitter<string> = new EventEmitter<string>(); - import Output 
+	where 'emit' is a variable
+item:String;
+In child.comp.html
+	<input type="text" [(ngModel)]="item">
+Data from Chile to Parent is from event..
+
+In app.comp.ts
+handleChildData(data, childcount)..
+
+In app.comp.thml
+Update <app-child.. (send)="handle..
+
+New Application:
+---------------
+>ng new spa-app : or copy from the backup created yest.. & update package.json
+
+\spa-app>npm install --save bootstrap
+\spa-app>npm install --save jquery : fro bootstrap to work it need jquery
+
+BootStrap & Jqer dodn't have node module..
+
+bootstap.js, Jqury.js : has to be inclued, but wan to ignore unwanted code..
+
+Updete .angular-cli.json
+
+"../node_module/jquery/dist/jquery.min.js",
+"../nood_module/bootstrap/dist/js/bootstrap.min.js"
+> ng server : run to make sure path are correct
+
+* if make cheanges in .angular-cli.json have to run "ng serve" again..
+
+Plan:
+----
+1. want to build an app have (over view)
+	App root
+		Mendu bar
+		Left body
+			Course List
+				Course (images, price & description)
+			
+		Right body
+	
+spa-app>ng g c menubar
+	>ng g c leftbody
+	>ng g c rightbody
+
+2. menubar.comp.html:
+Google "bootstrap 4 navbar"
+Copy the code from browser from "nav" to "nav" to ..
+app.comp.html: Add menubar, leftbody & right body
+	<app-menubar></app-menubar>
+	<div id="leftbody">
+		<app-leftbody>..
+		
+app.com.css:
+	#leftbody..
+
+3. 
+	>ng g c slidshow
+	>ng g c contactform
+
+* to delete a module remove the folde & delet in app.mod.ts; import & declarations
+Add rightbody.com.html
+	<app-contactform></app-contactform>
+
+4. 
+app.module.ts:
+import {RouterModule} from '@angular..
+
+>ng g c routes/virtualclass
+>ng g c routes/home : repeat the same for all menu items & 'routes' is a folder
+...
+
+const route = [ : Decalaring a constant variable
+	{path:"", component:HomeCompnent},
+	...
+]
+
+imports: [
+ .. RouterModule.forRoot(route) : we are sending the variable to root..
+
+* [ngClass] = "temp" : temp is a varibale searched in the declaration (*.ts); if "[" not used then direc value
+
+leftbody.com.html: To show the root result
+Add <router-outlet>..
+
+5.
+Under the Home when user select different course list should show different course..
+
+>ng g c routs/home/course
+>ng g c routs/home/courselist
+
+/spa-app/src/assets/impages : copy some images here..
+
+6. Service: is an Angular featur which provides data to a component..
+
+>ng g s services/course : createing a service; it'll not modify/add app.module.ts
+
+7. Right click app -> crea a file -> course.ts
+
+export interface course { : like struct in C or creating a structure
+ name: string;
+ image: string;
+ ...
+}
+
+8. In course.services.ts : will be inside services folder
+import {course} from '../course'; : interfaced created in step 7 & declare it & add value to it..
+..
+private courses:course[];
+..
+getCourses():courses[] { : Method will return the array.
+ return this.courses;
+}
+
+9. Edit course.component.html & course.comp.css  : in app\routs\home\course
+ & edit course.copm.ts
+course.com.ts:
+@Input('course') current:course; : Input variable declared.
+course.com.html:
+<h4>Price: {{current.price}}</h4>
+
+10. Service are ment to be shared my components.. preferably singleton obj.. 
+	Never instantiate a service.. new CourseSercvice() not recomended.. it should be injected..
+app.mod.ts : this sevice will be available in appication level; can also be declared in module/component level.
+import{CourseService} from './services/course.service';
+..
+providers:[CourseService]
+
+11. courselist.com.ts : courseservices is injecte in constructor..
+
+import {CourseService} from '../../../services/course.service';
+import {course} from '../../../course' : import coruse array.
+
+courselist.com.html:
+<app-course *ngFor="let x of courses" [course]="x"> : Input variable 'course' is passed to course module
+
+12. home.comp.html
+<app-courselist>
+
+Day 3:
+======
+Topics Covered:
+---------------
+1.Component
+2. Parent Child Components relationship
+3. Directivers
+	Component Directiver (Component)
+	Structural Dir (*ngFor, *ngIf, *ngSwitch)
+	Attribute Directiver
+		Input[]
+		Output[]
+		Two way dinding [()]
+	Input & Output
+		@Input (receive data from the parent)
+		@Output (Emit data to the parent) - Event Emitter
+	Routing
+		Configure a basic rout
+		Router-oulet
+		ReoutLink directivee
+Services
+How to create a service
+How to configure service to be shared object (To be configured in app.modules.ts)
+Component specific service
+Dependency Injection
+How to consumethe service in 
+
+13.
+Scenario:
+---------
+If an image/icon clicke the corese content has to be loaded..
+
+>ng g c /routes/home/overview
+
+app.mod.ts:
+{path:"cdetails/:ccode", component:OverviwComp} : here 'ccode' is URL parameter
+
+14.
+* In JS varibale can hold a function..
+
+ES5:
+---
+var a = function {
+	return "Hellow world";
+}
+console.log(a());
+
+function fun(p) { : p can be a function also; in other lang function has a propotype.. can call lik fun() also here p is undefined
+	console.log("Running");
+	p("Data"); : call back function
+	console.log("Still Running");
+}
+fun(function(c) {
+	console.log("Running in the call");
+	console.log(c);
+	}
+);
+
+ES6
+---
+function callme(p) {
+	p("India);
+}
+
+class Test {
+	constructior (d) {
+		this.data = d;
+	}
+	
+	changeData() {
+		callme(function(v) {
+			this.data = v;
+		}.bind(this)); : without binding wont work.. can be replaced by "callme((v) => this.data=v);"
+	}
+	
+	display() {
+		console.log(this.data);
+	}
+}
+
+var obj = new Test("World");
+obj.display();
+obj.changeData();
+obj.display(); : Error 
+
+* In call back fun enclosing scope will not be availabe.. in this case we have to bind
+
+Same program using =>
+---------------------
+
+Advantage of =>
+1. Program will look simple
+2. No need to bind
+
+var a = function() {
+	return "Hello";
+}
+a();
+
+var b=()=>"Hello";
+console.log(b());
+
+var c = (test)=>{
+	console.log("line1");
+	console.log(test);
+}
+
+overview.com.ts:
+
+route.params.subscribe(params => this.courseCode=params['ccode']); : where ccode is parameter in URL
+
+overvuew.com.html:
+Updated
+
+course.com.html:
+<a routerLink="cdetails/{{current.name}}"> : assuming course name as course id
+
+15. Going to work on "Review" menu.. Read from Rest Service..
+URL: http://139.59.9.236.8898/rest-api/reviews : returns a JSON object
+
+> ng g s service/reviews
+> ng g c routes/reviews/reviews
+
+app.module.ts:
+updeate  the new service..
+
+16. Create app/review.ts and add the JSON structue.
+revuew.ts
+export interface review {
+	name: string;
+	...
+	
+17. 
+review.service.ts:
+import HttpClinetModuel
+import Observable
+getReview():Observable<object> {
+	return this.http.get("http://139.59.9.236.8898/rest-api/reviews");
+}
+
+* Rest call is an asynchronous call.. so Angular uses an Observer disign pattern.. observable obj waits for responce..
+* Angure 2, 4.1 we use a service called Http
+* Angular 4.2 introduce a service called HttpClient
+app.modules.ts
+Add it here also..
+
+18.
+review.comp.html: 
+review.com.ts:
+@Input('review') current: review;
+
+19.
+review.com.ts:
+construction (private rs:ReviewService) {}
+ngOnInit() { : Any service consume in init..
+	this.rs.getReview().subscribe(...
+}
+
+Pipes : In Angular 1.x they call it as filter
+-----
+Whic is applied on the variable '|'; modify the value accirding to the pipe
+See course.comp.html
+Ex: current.price | currency: "INR" 
+
+>ng generate pipe pipes/discount : or g p pipes/descount; updates app.mod.ts
+
+discount.pipe.ts : Updated
+
+app.mod.ts:
+import {FromsModule} 
+
+>ng g p pipes/coursefilter : To filter a the corse by price type
+
+Form handling in Angular:
+-------------------------
+
+1. Template based form handling (NgModel) -- FormsModule
+2. Model Based approach (FormBuilder) - ReactiveFormsModule : if complex
+
+URL: 139.59.9.236:8898/rest-api/enquiries : return a JSON
+
+>ng g s services/enquiry
+
+enquiry.service.ts : Post request 
+
+contactform.comp.html : Updated
+
+Day 4:
+======
+
+Recap:
+------
+Services
+HttpClient
+Get Request
+Post Request
+Observables
+Routing parameters
+Form Handling using Templates
+Pipes
+	Pipes on string and numbers literals
+	Pipes on array
+	Custome pipes
+	
+Today:
+------
+Routing - multiple router outlets
+Custom Directives
+Model based form handling
+Internationalization
+Lige cycle of component
+Testing overview.
+
+Life Cycle of Comp:
+-------------------
+
+A comp is created in two ways..
+	1. <app-child></app-child> : one instance ll be created..
+	2. <a routerLink="home"> Home </a>
+		if path Home is associated with HomeComp.. homeComp is Instantiant.. or load by clicking link..
+	
+Once create it undergos following phases:
+1. Initiation - construcor will execute..
+
+In a component class generally there will be two kind of instance members..
+	Instance memebers which are not decorated with input & output
+	Instance members which are decorated with inpu & output..
+	
+Input decorate instance varibales receives value from parent..
+	input variable will recieve value from the parent only after execution of construction..
+generally other instance members will intilized in constructor or before constructor..
+
+After the input values are received and after output variables is bound with parent subscription.
+The compnent is said 
+
+ngOnInit() -- will be executed after cons.. all the vaible are initialized.. one time in the life cycle..
+	will execute on first initialization.. exe only once..
+
+ngOnChanges() : by implement onChanges interface.. exec before ngOnInit
+	Executes just after input variables initialized for the first time just before ngOnInit
+	Everytime a child receives a new object as input it will execute..
+	Every time this run .. ngDoCheck will also run..
+	Exectues only when received from parent.
+	
+ngDoChekc() : after ngOnInit; 
+	First time it will execute after ngoninit
+	It will execute for every update in any of the instance variables..
+
+ngOnDestroy(): 
+	
+<div id="container"> : if comp is removed from this div it's destoryed..
+	<app-chile>
+</div>
+
+Every time when componet is rooted the old component is destoryed.. & new comp is created..
+
+Event related to Templates (html & css):
+---------------------------------------
+
+Once a component is initialized the template is bound with the state and template is rendered..
+
+Generally template is divided into two parts
+
+1. (Own template + Template called from external library)
+	Call it as Content
+2. Child template
+	Call it as View
+
+ngAfterContentInit(): Execut after parent initialzed..
+
+ngAfterViewInit(): Once entire view is initialized this ll be executed.. after chile comp init..
+
+ngAfterContentChecked(): 
+ngAfterViewChecked():
+	Are exe multiple times...
+	
+Internationalization:
+--------------------
+
+1. src/assets/i18n/ : downlaod the translation json files and save here..
+
+2. >ng g c routes/schedule
+
+scheudl.com.html & css updated
+
+app.comp.ts : updat the root array..
+
+menubar.comp.html:
+[routerLink] = "[{outlets: {sidebar: ['schedules']}}] 
+
+rightbody.com.html:
+<rout-outlet name="sidbar"> : Added..
+
+spa-app>npm install --save @ngx-translate/core@8.0 : latest version of translation has bug.. so 8.0
+	>npm install --save @ngx-translate/http-loader@2.0
+
+app.modu.ts : import trans..
+
+Input Attribute Directives
+--------------------------
+
+>ng generate directive dirctives/highliht
+
+highlight.directive.ts:
+
+couse.com.html:
+<div class="" [highlight]="current.price">
+
+Structural Directiver
+---------------------
+
+>ng generate directive directives/offer
+>ng g s services/offer
+
+offer.service.ts:
+app.com.ts:
+app.com.html:
+offer.directive.ts
+
+var obj = new CustomeDate();
+obj.Month = 12; : where Month is a instance variable leke gettor, settor in Java
+
+ViewContainer : where it's applied see (offer.directive.ts)
+View template: 
+	We can get there reg in directive..
+
+Model Base Form Handling:
+-------------------------
+Use review module for this..
+
+reviews.com.ts:
+
+URL: 139.59.9.234/review.txt
+
+app.module.ts 
+Add reactiveFormModule
+
+reviews.com.html : Copied from trainer..
+
+
+1. git config --global user.email XXX@gmail.com
+
+2. Login to github.com in bowser:
+	Click on '+'
+	Create Reposotary..
+	Copy the URL ends with .git
+3. Go to the folder which has to be uploaded..
+	Right click 'Git GUI Here'
+	New Rep & select the same folder..
+4. In "Comment Message" give "Firs commit" click on Stage Changed -> click Continue
+5. Click "Commit"
+5. Click "Push" and past the URL "https://github.com/rosaryr/AngularJS4.git"
+6. Click on "Push"
+
+https://github.com/vinodh1988/Repost
+https://github.com/vinodh1988/LifeCycle
+https://github.com/vinodh1988/unitTest
+
+
+
