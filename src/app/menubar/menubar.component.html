@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-sm bg-blue navbar-light">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" routerLink="/">{{"VARS.Home" | translate}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/offices">{{"VARS.Offices" | translate}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/offers">{{"VARS.Offers" | translate}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" routerLink="/vclass">{{"VARS.Virtualclass"  | translate}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" routerLink="/reviews">{{"VARS.Reviews" | translate}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" routerLink="/ncourses">{{"VARS.Newcourse"  | translate}}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" 
+        [routerLink]="[{outlets: {sidebar: ['schedules']}}]">
+        {{"VARS.Schedules" | translate}}</a>
+    </li>
+  </ul>
+  <select [(ngModel)] = "lang" (change)="changeLang()">
+    <option>english</option>
+    <option>tamil</option>
+    <option>telugu</option>
+    <option>hindi</option>
+  </select>
+</nav>
+
